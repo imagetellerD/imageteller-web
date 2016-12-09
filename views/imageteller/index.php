@@ -15,10 +15,10 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 </div>
 <div class="main_bottom">
 	<div class="main_bottom_body">
-		<div class="creative_tag_input_field col-md-12" style="padding-top:25px">
+		<div class="creative_tag_input_field col-md-12 hide" style="padding-top:25px">
 			<input type="text" class="tag_input" placeholder="回车输入tag..."></input>
 		</div>
-		<div class="poem_tag_input_field col-md-12 hide" style="padding-top:25px">
+		<div class="poem_tag_input_field col-md-12" style="padding-top:25px">
 			<select class="poem_title col-md-5">
 				<?php foreach($poemTitles as $id => $name):?>
 					<option value="<?= $id?>"><?= $name?></option>
@@ -137,6 +137,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	height:36px;
 	border-radius: 5px;
 	margin-top: -2px;
+	box-shadow: 0 0 15px rgb(120, 130, 160);
 }
 .tag {
 	width: 100px;
@@ -182,7 +183,8 @@ textarea.imageteller_display {
 	border-color: #7882a0;
 	border-radius: 4px;
 	height:200px;
-	width:100%
+	width:100%;
+	box-shadow: 0 0 20px rgb(120, 130, 160);
 }
 input::-ms-input-placeholder{text-align: center;} 
 input::-webkit-input-placeholder{text-align: center;} 
