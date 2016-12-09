@@ -144,7 +144,7 @@ class ImagetellerController extends BaseController {
 		if ($_tags || $_descriptions) {
 			$ret = $thrift->searchCreativeTexts($_tags, $_descriptions);
 			if ($ret) {
-				return $this->renderAjax(AjaxErrorCode::SUCCESS, '', ['text' => $ret]);
+				return $this->renderAjax(AjaxErrorCode::SUCCESS, '', ['texts' => $ret]);
 			} else {
 				return $this->renderAjax(AjaxErrorCode::FAILED, '画译娘罢工了，要点赞才能起来。');
 			}

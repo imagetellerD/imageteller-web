@@ -9,7 +9,7 @@ return [
     'OMG_THRIFT' => array(
         'thriftRoot' => __DIR__ . '/../lib/thirdparty/Thrift',
         'packageRoot' => '/home/zhouting/OMG/common/build/gen-php',
-        'remoteHost' => 'domob-202.domob-inc.cn',
+        'remoteHost' => 'domob-206.domob-inc.cn',
         'port' => '29900',
         'service' => 'Thrift_OMG/OmgService',
 		'clientClass' => '\Thrift_OMG\OmgServiceClient',

@@ -7,65 +7,103 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 		<p>点我上传</p>
 	</div>
 	<div class="col-md-12 switch_tab">
-		<ul class="" style="width:100px;height:30px">
+		<ul class="nav nav-tabs">
 			<li class="poem_tab"><a href="javascript:;">给我写诗！</a></li>
 			<li class="creative_tab active"><a href="javascript:;">我要工作！</a></li>
 		</ul>
 	</div>
 </div>
 <div class="main_bottom">
-	<div class="main_bottom_body" style="width:70%;margin:auto">
-		<div class="col-md-12" style="padding-top:25px">
-			<select class="poem_title col-md-5" style="background-color:#7882a0;height:35px">
+	<div class="main_bottom_body">
+		<div class="creative_tag_input_field col-md-12" style="padding-top:25px">
+			<input type="text" class="tag_input" placeholder="回车输入tag..."></input>
+		</div>
+		<div class="poem_tag_input_field col-md-12 hide" style="padding-top:25px">
+			<select class="poem_title col-md-5">
 				<?php foreach($poemTitles as $id => $name):?>
 					<option value="<?= $id?>"><?= $name?></option>
 				<?php endforeach;?>
 			</select>
 			<div class="col-md-7" style="padding-right:0px">
-			<input type="text" class="tag_input" style="width:100%;background-color:#7882a0;border-color:#7882a0;height:35px"></input>
+			<input type="text" class="tag_input poem_tag_input" placeholder="回车输入tag..."></input>
 			</div>
 		</div>
 		<div class="tag_container col-md-12" style="padding-top:15px">
 		</div>
 		<div class="col-md-12" style="padding-top:25px;">
-			<textarea class="imageteller_display" style="height:100px;width:100%"></textarea>
+			<textarea class="imageteller_display"></textarea>
 		</div>
 		<div class="col-md-12" style="padding-top:15px">
-			<button type="input" class="generate btn">生成诗歌</button>
+			<button type="input" class="generate btn">生成创意</button>
 		</div>
 	</div>
 </div>
 <style>
 #upload_field {
 	cursor: pointer;
-	width: 400px;
-	height: 250px;
+	width: 40%;
+	height: 50%;
 	margin: auto;
-	background-color: aliceblue;
-	margin-top: 80px;
+	background-color: #7882a0;
+	margin-top: 15%;
+	border-radius: 10px;
+	background-size: cover;
+	text-align: center;
+	padding: 13%;
+}
+#upload_field p {
+	
+}
+#upload_field:hover {
+	background-color: #97c8fb;
 }
 .main_top {
 	background-image: url('/css/analyze_image/main_up.png');
-	min-height: 500px;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 60%;
+	height: 59%;
 	padding-top: 15px;
 	position: relative;
 }
 .main_bottom {
 	background-image: url('/css/analyze_image/main_bottom.png');
-	min-height: 300px;
-	margin-top: -15px;
-	padding-top: 15px;
+	margin-top: -1%;
+	padding-top: 1%;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height:62%;
+	height:42%;
+	min-height:450px;
+}
+.main_bottom_body {
+	width:70%;
+	margin:auto
 }
 .switch_tab {
 	position: absolute;
 	bottom: 0px;
+	padding: 0px;
 }
+.switch_tab ul.nav {
+	padding-left: 60px;
+	    border-bottom: 1px solid #313c4f;
+}
+.switch_tab ul.nav li {
+	margin-right: 10px;
+	background-color: #7882a0;
+	border-radius: 9px 9px 0 0;
+}
+.switch_tab ul.nav li a {
+	    border-radius: 9px 9px 0 0;
+}
+.switch_tab ul.nav li a:hover {
+	background-color: #313c4f;
+	border: 1px solid #313c4f;
+}
+.switch_tab ul.nav li.active a {
+	background-color: #313c4f;
+	border: 1px solid #313c4f;
+}
+/*
 .switch_tab ul {
 	width: 100px;
 	height: 30px;
@@ -85,6 +123,21 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	border-radius: 4px 4px 0 0;
 	margin-right: 0;
 }
+*/
+.poem_title {
+	background-color:#7882a0;
+	border-color: #7882a0;
+	height:35px;
+	border-radius: 4px;
+}
+.tag_input {
+	width:100%;
+	background-color:#7882a0;
+	border-color:#7882a0;
+	height:36px;
+	border-radius: 5px;
+	margin-top: -2px;
+}
 .tag {
 	width: 100px;
 	height: 25px;
@@ -92,6 +145,8 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	display:inline-block;	
 	position: relative;
 	cursor: pointer;
+	margin-right:5px;
+	border-radius: 4px;
 }
 .tag p {
 	text-align: center;
@@ -115,10 +170,20 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	width: 100px;
 	position: absolute;
 	right: 15px;	
+	background-color: #7882a0;
+	line-height: 15px;
 }
-textarea {
+.generate:hover {
+	background-color: #97c8fb;
+}
+textarea.imageteller_display {
 	resize: none;
 	background-color: #7882a0;
 	border-color: #7882a0;
+	border-radius: 4px;
+	height:200px;
+	width:100%
 }
+input::-ms-input-placeholder{text-align: center;} 
+input::-webkit-input-placeholder{text-align: center;} 
 </style>

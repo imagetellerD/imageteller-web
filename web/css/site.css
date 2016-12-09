@@ -11,4 +11,7 @@ body {
 .wrap > .container {
     /*padding: 70px 15px 20px;*/
 }
+.container {
+    font: 16px/1.62 "Helvetica Neue","Lantinghei SC","Microsoft YaHei","Microsoft JhengHei",sans-serif;
+}
 

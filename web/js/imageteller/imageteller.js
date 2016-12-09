@@ -8,6 +8,9 @@ function getActiveTab() {
 }
 
 function addTag(tag) {
+	if (DATA.tags[tag.text]) {
+		return;
+	}
 	var html = [];
 	html.push(
 		'<span class="tag" text="' + tag.text + '">',
@@ -52,7 +55,7 @@ function getCreativeText() {
 		},
 		success: function(ret) {
 			if (ret.errorCode == 0) {
-				$('.imageteller_display').empty().text(ret.data.text);
+				$('.imageteller_display').empty().text(ret.data.texts.join('\n------------------------------------------------------------------------\n'));
 			} else {
 				alert(ret.message);
 			}
@@ -68,6 +71,9 @@ function analyzeImage() {
 	var input = document.getElementById('image_input');
 	var isPoem = getActiveTab() == 'poem';
 	var image = input.files[0];
+	if (!image) {
+		return;
+	}
 	var formData = new FormData();
 	formData.append('image', image);
 	$.ajax({
@@ -102,9 +108,17 @@ function analyzeImage() {
 }
 
 $('body').on('click', '#upload_field', function(){
-	$('#image_input').click();
+	$('#image_input').val('').click();
 }).on('change', '#image_input', function(){
-	analyzeImage();
+	var input = document.getElementById('image_input');
+	if (input.files.length > 0) {
+		var url = URL.createObjectURL(input.files[0]);
+		$('#upload_field').css('background-image', 'url(' + url + ')');
+		analyzeImage();
+		$('#upload_field p').hide();
+	} else {
+		$('#upload_field p').show();
+	}
 }).on('click', 'i.remove-icon', function(){
 	var text = $(this).parent('.tag').attr('text');
 	if (DATA.tags[text]) {
@@ -122,6 +136,16 @@ $('body').on('click', '#upload_field', function(){
 	if (!$(this).hasClass('active')) {
 		$('.switch_tab li').removeClass('active');
 		$(this).addClass('active');
+		var currentIsPoem = (getActiveTab() == 'poem');
+		if (currentIsPoem) {
+			$('.creative_tag_input_field').addClass('hide');
+			$('.poem_tag_input_field').removeClass('hide');
+			$('.generate').text('生成诗歌');
+		} else {
+			$('.creative_tag_input_field').removeClass('hide');
+			$('.poem_tag_input_field').addClass('hide');
+			$('.generate').text('生成创意');
+		}
 		analyzeImage();
 	}
 }).on('keydown', '.tag_input', function(e) {
@@ -130,6 +154,7 @@ $('body').on('click', '#upload_field', function(){
 			text: $(this).val(),
 			confidence: 100,
 		});
+		$(this).val('');
 	}
 });
 

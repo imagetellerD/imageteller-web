@@ -1,6 +1,10 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+if (file_exists(__DIR__ . '/user.params.php')) {
+	$params = require(__DIR__ . '/user.params.php');
+} else {
+	$params = require(__DIR__ . '/params.php');
+}
 
 $config = [
     'id' => 'OMG',

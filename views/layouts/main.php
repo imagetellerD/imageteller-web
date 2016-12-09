@@ -51,10 +51,11 @@ use yii\widgets\Breadcrumbs;
     right: 0;
     bottom: 0;
 	padding: initial;
+    min-height: 1200px;
 }
 .container {
 	height:100%;
-    min-height: 800px;
+    min-height: 1200px;
 	/*overflow: hidden;*/
 }
 /*
