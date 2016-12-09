@@ -23,7 +23,7 @@ function addTag(tag) {
 }
 
 function getPoem() {
-	$('.imageteller_display').text('少女蓄力中...')
+	$('.imageteller_display').text('画译娘蓄力中...')
 	$.ajax({
 		url: '/imageteller/get-poem',
 		data: {

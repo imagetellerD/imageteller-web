@@ -30,32 +30,52 @@ class ImagetellerController extends BaseController {
 					'tags' => [],
 					'descriptions' => [],
 				];
+				$tagConfidenceMap = []; //记录tag name 和confidence的map，用于排序
 				if (isset($ret['description']) && is_array($ret['description'])) {
 					if (isset($ret['description']['captions']) && is_array($ret['description']['captions'])) {
 						foreach($ret['description']['captions'] as $desc) {
 							$data['descriptions'][] = $desc['text'];
 						}
 					}
-/*
 					if (isset($ret['description']['tags']) && is_array($ret['description']['tags'])) {
 						foreach($ret['description']['tags'] as $text) {
 							$data['tags'][$text] = [
 								'text' => $text,
-								'confidence' => '100',
+								'confidence' => '75',
 							];
+							//大家都是75,何必互相为难
+							#$tagConfidenceMap[$text] = !$tagConfidenceMap[$text] ? 75 : ($tagConfidenceMap[$text] > 75 ? $tagConfidenceMap[$text] : 75);
+							$tagConfidenceMap[$text] = 75;
 						}
 					}
-*/
 				}
 				if (isset($ret['tags']) && is_array($ret['tags'])) {
 					foreach($ret['tags'] as $tag) {
+						$tag['confidence'] = (int)($tag['confidence'] * 100);
 						$data['tags'][$tag['name']] = [
 							'text' => $tag['name'],
-							'confidence' => (int)($tag['confidence'] * 100),
+							'confidence' => $tag['confidence'],
 						];
+						$currentConfidence = $tagConfidenceMap[$tag['name']] ? $tagConfidenceMap[$tag['name']] : 0;
+						if ($tag['confidence'] > $currentConfidence) {
+							$tagConfidenceMap[$tag['name']] = $tag['confidence'];
+						}
 					}
 				}
-				$data['tags'] = array_values($data['tags']);
+				arsort($tagConfidenceMap); //按分数/自信度排序
+				//取前20个
+				$_tags = [];
+				$limit = 20;
+				foreach($tagConfidenceMap as $text => $confidence) {
+					if ($limit < 0) {	
+						break;
+					}
+					$_tags[] = $data['tags'][$text];
+					$limit--;
+				}
+				$data['tags'] = $_tags;
+				
+				#$data['tags'] = array_values($data['tags']);
 				return $this->renderAjax(AjaxErrorCode::SUCCESS, '', $data);
 			} else {
 				return $this->renderAjax(AjaxErrorCode::FAILED, 'api returned nothing.');
@@ -103,7 +123,7 @@ class ImagetellerController extends BaseController {
 			if ($ret) {
 				return $this->renderAjax(AjaxErrorCode::SUCCESS, '', ['poem' => $ret]);
 			} else {
-				return $this->renderAjax(AjaxErrorCode::FAILED, '画译娘罢工了，要点赞才能起来。');
+				return $this->renderAjax(AjaxErrorCode::FAILED, '画译娘罢工了!');
 			}
 		} else {
 			return $this->renderAjax(AjaxErrorCode::INVALID_PARAMS, '一个能用的标签都木有啊兄弟');
@@ -146,7 +166,7 @@ class ImagetellerController extends BaseController {
 			if ($ret) {
 				return $this->renderAjax(AjaxErrorCode::SUCCESS, '', ['texts' => $ret]);
 			} else {
-				return $this->renderAjax(AjaxErrorCode::FAILED, '画译娘罢工了，要点赞才能起来。');
+				return $this->renderAjax(AjaxErrorCode::FAILED, '画译娘罢工了！');
 			}
 		} else {
 			return $this->renderAjax(AjaxErrorCode::INVALID_PARAMS, '一个能用的标签都木有啊兄弟');

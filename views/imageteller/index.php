@@ -8,8 +8,8 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	</div>
 	<div class="col-md-12 switch_tab">
 		<ul class="nav nav-tabs">
-			<li class="poem_tab"><a href="javascript:;">给我写诗！</a></li>
-			<li class="creative_tab active"><a href="javascript:;">我要工作！</a></li>
+			<li class="poem_tab active"><a href="javascript:;">写诗在这里</a></li>
+			<li class="creative_tab"><a href="javascript:;">创意看这边</a></li>
 		</ul>
 	</div>
 </div>
@@ -34,7 +34,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 			<textarea class="imageteller_display"></textarea>
 		</div>
 		<div class="col-md-12" style="padding-top:15px">
-			<button type="input" class="generate btn">生成创意</button>
+			<button type="input" class="generate btn">生成诗歌</button>
 		</div>
 	</div>
 </div>
