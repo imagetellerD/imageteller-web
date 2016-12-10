@@ -182,4 +182,8 @@ class ImagetellerController extends BaseController {
 		$poemTitles = \app\common\Poem::getPoemTitles();
 		return $this->render('index', ['poemTitles' => $poemTitles]);
 	}
+
+	public function actionError() {
+		echo "大兄弟你干啥呢。";
+	}
 }
