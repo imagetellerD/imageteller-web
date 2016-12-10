@@ -2,7 +2,7 @@
 $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\assets\AppAsset']);
 ?>
 <div class="main_top">
-	<input type="file" id="image_input" name="image" style="display:none">
+	<input type="file" id="image_input" name="image" style="display:none" accept="image/png,image/jpeg">
 	<div id="upload_field" class="">
 		<p>点我上传</p>
 	</div>

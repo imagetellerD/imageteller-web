@@ -37,8 +37,13 @@ class ImagetellerController extends BaseController {
 							$data['descriptions'][] = $desc['text'];
 						}
 					}
+					$limit = 5; //我最多只要5个！
 					if (isset($ret['description']['tags']) && is_array($ret['description']['tags'])) {
 						foreach($ret['description']['tags'] as $text) {
+							if ($limit < 0) {
+								break;
+							}
+							$limit--;
 							$data['tags'][$text] = [
 								'text' => $text,
 								'confidence' => '75',

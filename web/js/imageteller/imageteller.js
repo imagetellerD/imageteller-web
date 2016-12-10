@@ -93,12 +93,15 @@ function analyzeImage() {
 				$.each(ret.data.tags, function(i,tag) {
 					addTag(tag);
 				})
+				if (ret.data.tags.length == 0) {
+					$('.tag_container').html('<p style="color:darkgray">这张图我不认识......</p>');
+				}
 				
 			} else {
 				if (ret.message) {
 					alert(ret.message)
 				}
-				console.errog(ret.errorCode, ret.message);
+				console.error(ret.errorCode, ret.message);
 			}
 		},
 		error: function() {
@@ -114,8 +117,13 @@ $('body').on('click', '#upload_field', function(){
 	if (input.files.length > 0) {
 		var url = URL.createObjectURL(input.files[0]);
 		$('#upload_field').css('background-image', 'url(' + url + ')');
-		analyzeImage();
 		$('#upload_field p').hide();
+
+		if(input.files[0].length > 4000000) {
+			alert('图太大了兄弟。。。');
+		} else {
+			analyzeImage();
+		}
 	} else {
 		$('#upload_field p').show();
 	}
