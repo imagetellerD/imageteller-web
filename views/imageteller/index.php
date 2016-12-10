@@ -87,7 +87,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 }
 .switch_tab ul.nav {
 	padding-left: 60px;
-	    border-bottom: 1px solid #313c4f;
+	border-bottom: 1px solid #313c4f;
 }
 .switch_tab ul.nav li {
 	margin-right: 10px;
