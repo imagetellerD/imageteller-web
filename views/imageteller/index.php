@@ -42,17 +42,19 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 #upload_field {
 	cursor: pointer;
 	width: 40%;
-	height: 50%;
+	height: 35%;
+	min-height: 200px;
+	min-width: 300px;
 	margin: auto;
 	background-color: #7882a0;
-	margin-top: 15%;
+	margin-top: 21%;
 	border-radius: 10px;
 	background-size: cover;
 	text-align: center;
-	padding: 13%;
+	padding: 15px;
 }
 #upload_field p {
-	
+	margin-top: 20%;
 }
 #upload_field:hover {
 	background-color: #97c8fb;
@@ -61,7 +63,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	background-image: url('/css/analyze_image/main_up.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 59%;
+	height: 54%;
 	padding-top: 15px;
 	position: relative;
 }
@@ -71,7 +73,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	padding-top: 1%;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height:42%;
+	height:47%;
 	min-height:450px;
 }
 .main_bottom_body {
@@ -93,7 +95,8 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 	border-radius: 9px 9px 0 0;
 }
 .switch_tab ul.nav li a {
-	    border-radius: 9px 9px 0 0;
+	border-radius: 9px 9px 0 0;
+	color: white;
 }
 .switch_tab ul.nav li a:hover {
 	background-color: #313c4f;
@@ -101,6 +104,7 @@ $this->registerJsFile('/js/imageteller/imageteller.js', ['depends' => '\app\asse
 }
 .switch_tab ul.nav li.active a {
 	background-color: #313c4f;
+	color: white;
 	border: 1px solid #313c4f;
 }
 /*
