@@ -119,7 +119,7 @@ $('body').on('click', '#upload_field', function(){
 		$('#upload_field').css('background-image', 'url(' + url + ')');
 		$('#upload_field p').hide();
 
-		if(input.files[0].length > 4000000) {
+		if(input.files[0].size > 4000000) {
 			alert('图太大了兄弟。。。');
 		} else {
 			analyzeImage();
